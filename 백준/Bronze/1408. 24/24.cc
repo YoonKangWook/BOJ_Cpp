@@ -5,6 +5,8 @@ using namespace std;
 
 vector<int> time_calc(vector<int> current_time, vector<int> start_time)
 {
+    // "start_time.size()", 부호가 다른 정수 표현식의 비교로 경고 발생
+    // 해결 : static_cast<int>()로 형변환
     vector<int> time_calc(static_cast<int>(start_time.size()));
 
     for (int i = 0; i < static_cast<int>(start_time.size()); i++)
@@ -46,6 +48,11 @@ int main()
     cin >> str_startTime;
 
     // :, 콜론 제거
+    // error 발생 : 'std::__cxx11::basic_string<char>::iterator'를 'constchar*'로 변환할 수 없어 컴파일 에러 발생
+    //str_currentTime.erase(remove(str_currentTime.begin(), str_currentTime.end(), ':'), str_currentTime.end());
+    //str_startTime.erase(remove(str_startTime.begin(), str_startTime.end(), ':'), str_startTime.end());
+
+    // 에러 수정
     str_currentTime.erase(str_currentTime.begin() + 2);
     str_currentTime.erase(str_currentTime.begin() + 4);
     str_startTime.erase(str_startTime.begin() + 2);
